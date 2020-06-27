@@ -21,32 +21,21 @@
  *  any questions.
  *
  */
-package org.netfleet.sdk.data;
+package org.netfleet.sdk.protocol;
 
-/**
- * @author M.Çağrı TEPEBAŞILI - cagritepebasili [at] protonmail [dot] com
- * @version 1.0.0-RELEASE
- * @since 1.0.0-RELEASE
- */
-public enum TransportationIndex {
+import java.util.Collection;
+import java.util.Map;
 
-  GOING(4),
-  COMING(5),
-  OTHER(-1),
-  UNKNOWN(0);
+public interface BaseProtocol extends Protocol {
 
-  private final Integer value;
+  Map<String, String> getContent();
 
-  TransportationIndex(Integer value) {
-    this.value = value;
-  }
+  String setValue(String key, String value);
 
-  public Integer getValue() {
-    return value;
-  }
+  String getValue(String key);
 
-  @Override
-  public String toString() {
-    return String.valueOf(value);
-  }
+  Collection<String> getKeys();
+
+  Collection<String> getValues();
+
 }

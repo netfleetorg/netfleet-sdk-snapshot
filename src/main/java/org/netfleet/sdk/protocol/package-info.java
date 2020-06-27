@@ -21,28 +21,4 @@
  *  any questions.
  *
  */
-package org.netfleet.sdk.data;
-
-public enum StudentNotificationType {
-
-  ONLY_MOBILE(0),
-  WITH_SMS(1),
-  WITH_VOICEMAIL(2),
-  ALL(3),
-  UNKNOWN(-1);
-
-  private final int value;
-
-  StudentNotificationType(int value) {
-    this.value = value;
-  }
-
-  public int getValue() {
-    return value;
-  }
-
-  @Override
-  public String toString() {
-    return String.valueOf(value);
-  }
-}
+package org.netfleet.sdk.protocol;

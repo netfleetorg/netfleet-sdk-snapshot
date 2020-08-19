@@ -21,14 +21,27 @@
  *  any questions.
  *
  */
-package org.netfleet.sdk;
+package org.netfleet.sdk.util;
 
-public final class Version {
-  private Version() {
+import java.util.regex.Pattern;
+
+public final class Regex {
+  private Regex() {
   }
 
-  public static final String MAJOR = "1";
-  public static final String MINOR = "0";
-  public static final String PATCH = "11";
-  public static final String TYPE = "SNAPSHOT";
+  public static final Pattern SPECIAL_CHARACTER_REGEX
+      = Pattern.compile("[$&+,:;=\\\\?@#|/'<>.^*()%!-]");
+
+  public static final Pattern VALID_NAME_REGEX
+      = Pattern.compile("(?i)(^[a-z])((?![ .,'-]$)[a-z .,'-]){0,24}$");
+
+  public static final Pattern VALID_SURNAME_REGEX
+      = Pattern.compile("(?i)(^[a-z])((?![ .,'-]$)[a-z .,'-]){0,44}$");
+
+  public static final Pattern VALID_NUMERIC_REGEX
+      = Pattern.compile("-?\\d+(\\.\\d+)?");
+
+  public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
+      Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+
 }

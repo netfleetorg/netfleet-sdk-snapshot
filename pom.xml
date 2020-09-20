@@ -35,6 +35,7 @@
 
     <name>netfleet-sdk</name>
     <url>https://github.com/netfleetorg/netfleet-sdk</url>
+    <description>NetFleet Public SDK</description>
 
     <licenses>
         <license>

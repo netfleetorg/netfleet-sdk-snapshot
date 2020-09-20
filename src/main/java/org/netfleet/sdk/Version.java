@@ -29,6 +29,6 @@ public final class Version {
 
   public static final String MAJOR = "1";
   public static final String MINOR = "0";
-  public static final String PATCH = "11";
-  public static final String TYPE = "SNAPSHOT";
+  public static final String PATCH = "0";
+  public static final String TYPE = "RELEASE";
 }

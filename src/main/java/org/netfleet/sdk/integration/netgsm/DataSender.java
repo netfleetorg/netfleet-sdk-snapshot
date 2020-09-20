@@ -49,30 +49,30 @@ public final class DataSender {
   public BaseResponse sendSMS(final SmsDataContext context) throws Exception {
     Authentication auth = context.getAuthentication();
     if (auth.getUsername() == null ||
-      auth.getPassword() == null ||
-      auth.getBaseUrl() == null ||
-      context.getHeader() == null ||
-      context.getMessage() == null ||
-      context.getNumbers() == null ||
-      context.getNumbers().isEmpty()) {
+        auth.getPassword() == null ||
+        auth.getBaseUrl() == null ||
+        context.getHeader() == null ||
+        context.getMessage() == null ||
+        context.getNumbers() == null ||
+        context.getNumbers().isEmpty()) {
       throw new Exception("In the SendSMS class, all properties must not null!");
     }
     String fullPath = auth.getBaseUrl() + Endpoint.SEND_SMS;
     StringBuilder xml = new StringBuilder();
     xml.append("<?xml version='1.0' encoding='utf8'?> <mainbody> <header>  <company dil='TR'>Netgsm</company>   <usercode>")
-      .append(auth.getUsername())
-      .append("</usercode> <password>")
-      .append(auth.getPassword())
-      .append("</password>  <type>1:n</type>  <msgheader>")
-      .append(context.getHeader())
-      .append("</msgheader>  </header>  <body>  <msg>  <![CDATA[")
-      .append(context.getMessage())
-      .append("]]>  </msg>  ");
+        .append(auth.getUsername())
+        .append("</usercode> <password>")
+        .append(auth.getPassword())
+        .append("</password>  <type>1:n</type>  <msgheader>")
+        .append(context.getHeader())
+        .append("</msgheader>  </header>  <body>  <msg>  <![CDATA[")
+        .append(context.getMessage())
+        .append("]]>  </msg>  ");
 
     for (String number : context.getNumbers()) {
       xml.append("<no>")
-        .append(number)
-        .append("</no>");
+          .append(number)
+          .append("</no>");
     }
 
     xml.append("</body>  </mainbody>");
@@ -85,30 +85,30 @@ public final class DataSender {
   public BaseResponse sendVoiceMail(final VoiceMailDataContext context) throws Exception {
     Authentication auth = context.getAuthentication();
     if (auth.getUsername() == null ||
-      auth.getPassword() == null ||
-      auth.getBaseUrl() == null ||
-      context.getAudioId() == null ||
-      context.getStartDate() == null ||
-      context.getStopDate() == null ||
-      context.getNumbers() == null ||
-      context.getNumbers().isEmpty()) {
+        auth.getPassword() == null ||
+        auth.getBaseUrl() == null ||
+        context.getAudioId() == null ||
+        context.getStartDate() == null ||
+        context.getStopDate() == null ||
+        context.getNumbers() == null ||
+        context.getNumbers().isEmpty()) {
       throw new Exception("In the SendVoiceMail class, all properties must not null!");
     }
     String fullPath = auth.getBaseUrl() + Endpoint.SEND_VOICE_MAIL;
     StringBuilder xml = new StringBuilder();
     xml.append("<?xml version='1.0' encoding='utf8'?> <mainbody> <header>  <usercode>")
-      .append(auth.getUsername())
-      .append("</usercode> <password>")
-      .append(auth.getPassword())
-      .append("</password>  <startdate>")
-      .append(formatDate(context.getStartDate()))
-      .append("</startdate> <starttime>")
-      .append(formatTime(context.getStartDate()))
-      .append("</starttime> <stopdate>")
-      .append(formatDate(context.getStopDate()))
-      .append("</stopdate> <stoptime>")
-      .append(formatTime(context.getStopDate()))
-      .append("</stoptime> <key>");
+        .append(auth.getUsername())
+        .append("</usercode> <password>")
+        .append(auth.getPassword())
+        .append("</password>  <startdate>")
+        .append(formatDate(context.getStartDate()))
+        .append("</startdate> <starttime>")
+        .append(formatTime(context.getStartDate()))
+        .append("</starttime> <stopdate>")
+        .append(formatDate(context.getStopDate()))
+        .append("</stopdate> <stoptime>")
+        .append(formatTime(context.getStopDate()))
+        .append("</stoptime> <key>");
 
     if (context.isKeyEnabled()) {
       xml.append("1");
@@ -117,13 +117,13 @@ public final class DataSender {
     }
 
     xml.append("</key> </header>  <body> <voicemail> <scenario> <series s='1'> <audioid>")
-      .append(context.getAudioId())
-      .append("</audioid> </series> <number>");
+        .append(context.getAudioId())
+        .append("</audioid> </series> <number>");
 
     for (String number : context.getNumbers()) {
       xml.append("<no>")
-        .append(number)
-        .append("</no>");
+          .append(number)
+          .append("</no>");
     }
 
     xml.append("</number> </scenario> </voicemail> </body> </mainbody>");
@@ -136,14 +136,14 @@ public final class DataSender {
     Authentication auth = context.getAuthentication();
 
     if (auth.getUsername() == null ||
-      auth.getPassword() == null ||
-      auth.getBaseUrl() == null ||
-      context.getFilePath() == null) {
+        auth.getPassword() == null ||
+        auth.getBaseUrl() == null ||
+        context.getFilePath() == null) {
       throw new Exception("In the UploadVoice class, all properties must not null!");
     }
 
     File uploadFile = new File(context.getFilePath());
-    MultipartUtility multipart = new MultipartUtility(auth.getBaseUrl()+ Endpoint.UPLOAD_VOICE, "UTF-8");
+    MultipartUtility multipart = new MultipartUtility(auth.getBaseUrl() + Endpoint.UPLOAD_VOICE, "UTF-8");
     multipart.addFormField("username", auth.getUsername());
     multipart.addFormField("password", auth.getPassword());
     multipart.addFilePart("dosya", uploadFile);
